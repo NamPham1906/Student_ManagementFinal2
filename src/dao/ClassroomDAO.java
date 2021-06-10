@@ -13,10 +13,10 @@ public class ClassroomDAO {
     }
 
 
-    public static List<Classroom> getAClassroom(String classroomid){
+    public static List<Classroom> findID (String classroomid){
         List<Classroom> results =
                 new Support<Classroom>().
-                        executeHql("SELECT st FROM Classroom st");
+                        executeHql("SELECT st FROM Classroom st WHERE st.classId = '" + classroomid + "'");
         return results;
     }
 }

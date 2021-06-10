@@ -1,5 +1,6 @@
 package dao;
 
+import pojo.Course;
 import pojo.Registerperiod;
 import java.util.List;
 
@@ -9,6 +10,13 @@ public class RegisterperiodDAO {
         List<Registerperiod> results =
                 new Support<Registerperiod>().
                         executeHql("SELECT st FROM Registerperiod st");
+        return results;
+    }
+
+    public static List<Registerperiod> findID (String registerperiodid){
+        List<Registerperiod> results =
+                new Support<Registerperiod>().
+                        executeHql("SELECT st FROM Registerperiod st WHERE st.registerperiodId = '" + registerperiodid + "'");
         return results;
     }
 }

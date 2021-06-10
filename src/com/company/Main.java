@@ -1,16 +1,22 @@
 package com.company;
-import dao.CourseDAO;
-import pojo.Course;
-import pojo.Student;
+import dao.*;
+import pojo.*;
 import java.util.List;
-import gui.*;
+//import SMUI.*;
 public class Main {
     public static void main(final String[] args)  {
-        List<Course> rs = CourseDAO.getAllCourse();
-        for (Course item:rs){
-          System.out.println(item.getStudents().isEmpty());
+
+
+        List<Registerperiod> rs2 = RegisterperiodDAO.getAllRegisterperiod();
+        for (Registerperiod item:rs2){
+            System.out.println(item.getRegisterperiodId());
         }
-        new Frame().MainFrame();
+
+
+        List<Student> rs23 = StudentDAO.findID("19120599");
+        for (Student item:rs23){
+            System.out.println(item.getFullname());
+        }
     }
 
 
