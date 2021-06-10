@@ -25,4 +25,30 @@ public class Support<T> {
         }
         return objects;
     }
+
+    public static boolean stringCompare (char[] input, String passwordstring ){
+        String inputstring = "";
+
+        StringBuilder buider = new StringBuilder(input.length);
+        for (Character c : input)
+            buider.append(c.charValue());
+        inputstring = buider.toString();
+
+
+        if (input.toString() == null ) {
+            return false;
+        }
+
+        if (inputstring.length() != passwordstring.length()){
+            return false;
+        }
+
+        if (passwordstring.equals(inputstring)){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 }

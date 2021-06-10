@@ -1,6 +1,5 @@
 package dao;
 
-import pojo.Semester;
 import pojo.Student;
 import java.util.List;
 
@@ -28,16 +27,7 @@ public class StudentDAO {
     }
 
     public static boolean checkPassword (char[] input, Student student){
-        String passwordstring = student.getPasswords();
-       char[] password =passwordstring.toCharArray();
-
-        for (int i = 0; i< passwordstring.length(); i++){
-            if (input[i] != password[i]){
-                return false;
-            }
-        }
-        return true;
-
+        return new Support<Student>().stringCompare(input, student.getPasswords());
     }
 
 }

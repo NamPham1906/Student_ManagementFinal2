@@ -13,9 +13,17 @@ public class Main {
         }
 
 
-        List<Student> rs23 = StudentDAO.findID("19120599");
-        for (Student item:rs23){
-            System.out.println(item.getFullname());
+        List<Course> rs23 = CourseDAO.getAllCourse();
+        for (Course item:rs23){
+            System.out.println(item.getCourseId() + "\n");
+            System.out.println(item.getSemester().getSemestername()+ "\n");
+            System.out.println(item.getSchoolSubject().getSubjectId() + "\n");
+            System.out.println(item.getSchoolSubject().getSubjectname() + "\n");
+            System.out.println(item.getSchoolSubject().getCredits()+ "\n");
+            System.out.println(item.getTeacher().getFullname() + "\n");
+            System.out.println(item.getRoomnum()+ "\n");
+            System.out.println(item.getWeekday() + "\n");
+            System.out.println(item.getShift()+ "\n");
         }
     }
 

@@ -12,8 +12,8 @@ import java.util.Set;
 public class Course {
     private String courseId;
     private Semester semester;
-    private String coursename;
-    private Integer credits;
+    private SchoolSubject schoolSubject;
+
     private Teacher teacher;
     private String roomnum;
     private Integer weekday;
@@ -41,23 +41,12 @@ public class Course {
     }
 
     @Basic
-    @Column(name = "coursename", nullable = true, length = 200)
-    public String getCoursename() {
-        return coursename;
+    public SchoolSubject getSchoolSubject() {
+        return schoolSubject;
     }
 
-    public void setCoursename(String coursename) {
-        this.coursename = coursename;
-    }
-
-    @Basic
-    @Column(name = "credits", nullable = true)
-    public Integer getCredits() {
-        return credits;
-    }
-
-    public void setCredits(Integer credits) {
-        this.credits = credits;
+    public void setSchoolSubject(SchoolSubject schoolSubject) {
+        this.schoolSubject = schoolSubject;
     }
 
     @Basic
@@ -124,8 +113,7 @@ public class Course {
         Course course = (Course) o;
         return Objects.equals(courseId, course.courseId) &&
                 Objects.equals(semester, course.semester) &&
-                Objects.equals(coursename, course.coursename) &&
-                Objects.equals(credits, course.credits) &&
+                Objects.equals(schoolSubject, course.schoolSubject) &&
                 Objects.equals(teacher, course.teacher) &&
                 Objects.equals(roomnum, course.roomnum) &&
                 Objects.equals(weekday, course.weekday) &&
@@ -137,6 +125,6 @@ public class Course {
 
     @Override
     public int hashCode() {
-        return Objects.hash(courseId, semester, coursename, credits, teacher, roomnum, weekday, shift, registerperiods, students);
+        return Objects.hash(courseId, semester, schoolSubject, teacher, roomnum, weekday, shift, registerperiods, students);
     }
 }

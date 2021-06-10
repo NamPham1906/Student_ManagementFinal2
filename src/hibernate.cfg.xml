@@ -14,6 +14,8 @@
         <mapping resource="Classroom.hbm.xml"/>
         <mapping resource="Course.hbm.xml"/>
         <mapping class="pojo.Course"/>
+        <mapping resource="SchoolSubject.hbm.xml"/>
+        <mapping class="pojo.SchoolSubject"/>
         <mapping resource="Registerperiod.hbm.xml"/>
         <mapping class="pojo.Registerperiod"/>
         <mapping resource="Semester.hbm.xml"/>
