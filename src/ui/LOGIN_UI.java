@@ -52,7 +52,7 @@ public class LOGIN_UI extends JFrame {
         this.setContentPane(COURSE_REGISTRATION_SYSTEM);
         this.pack();
         String filePath = new File("").getAbsolutePath();
-        ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\study.png");
+        ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\pic\\study.png");
         this.setIconImage(img.getImage());
         this.setLocationRelativeTo(null);
         this.setVisible(true);

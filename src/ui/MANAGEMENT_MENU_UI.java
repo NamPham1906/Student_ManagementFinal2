@@ -27,34 +27,34 @@ public class MANAGEMENT_MENU_UI extends JFrame {
         this.setContentPane(MANAGEMENT_MENU);
         this.pack();
         String filePath = new File("").getAbsolutePath();
-        ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\study.png");
+        ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\pic\\study.png");
         this.setIconImage(img.getImage());
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
-        ImageIcon teacherImg = new ImageIcon(filePath + "\\src\\ui\\teacher.png");
+        ImageIcon teacherImg = new ImageIcon(filePath + "\\src\\ui\\pic\\teacher.png");
         managmentAcountButton.setIcon(teacherImg);
 
 
-        ImageIcon studentImg = new ImageIcon(filePath + "\\src\\ui\\student.png");
+        ImageIcon studentImg = new ImageIcon(filePath + "\\src\\ui\\pic\\student.png");
         studentAcountButton.setIcon(studentImg);
 
-        ImageIcon subjectImg = new ImageIcon(filePath + "\\src\\ui\\subject.png");
+        ImageIcon subjectImg = new ImageIcon(filePath + "\\src\\ui\\pic\\subject.png");
         subjectButton.setIcon(subjectImg);
 
-        ImageIcon  semesterImg = new ImageIcon(filePath + "\\src\\ui\\semester.png");
+        ImageIcon  semesterImg = new ImageIcon(filePath + "\\src\\ui\\pic\\semester.png");
         semesterButton.setIcon(semesterImg);
 
-        ImageIcon  classImg = new ImageIcon(filePath + "\\src\\ui\\class.png");
+        ImageIcon  classImg = new ImageIcon(filePath + "\\src\\ui\\pic\\class.png");
         classButton.setIcon(classImg);
 
-        ImageIcon  courseImg = new ImageIcon(filePath + "\\src\\ui\\course.png");
+        ImageIcon  courseImg = new ImageIcon(filePath + "\\src\\ui\\pic\\course.png");
         courseButton.setIcon(courseImg);
 
-        ImageIcon  registerPeriodImg = new ImageIcon(filePath + "\\src\\ui\\register.png");
+        ImageIcon  registerPeriodImg = new ImageIcon(filePath + "\\src\\ui\\pic\\register.png");
         registerPeriodButton.setIcon(registerPeriodImg);
 
-        ImageIcon  logOutImg = new ImageIcon(filePath + "\\src\\ui\\logout.png");
+        ImageIcon  logOutImg = new ImageIcon(filePath + "\\src\\ui\\pic\\logout.png");
         logOutButton.setIcon(logOutImg);
 
 
