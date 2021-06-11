@@ -1,6 +1,5 @@
 package dao;
 
-import pojo.Course;
 import pojo.Registerperiod;
 import java.util.List;
 

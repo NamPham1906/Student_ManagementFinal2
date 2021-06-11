@@ -41,7 +41,6 @@
           </grid>
         </constraints>
         <properties>
-          <icon value="ui/study.png"/>
           <opaque value="false"/>
           <text value=""/>
           <verticalAlignment value="0"/>

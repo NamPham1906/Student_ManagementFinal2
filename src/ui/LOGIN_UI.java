@@ -26,20 +26,35 @@ public class LOGIN_UI extends JFrame {
     public void loginAction (){
         String user = userTextField.getText();
         char[] password = passwordTextField.getPassword();
-        boolean isvalid = false;
+        boolean studentisvalid = false;
+        boolean teacherisvalid = false;
 
-        List<Student> results = StudentDAO.findUser(user);
-        for (Student item:results){
-            isvalid = StudentDAO.checkPassword(password,item);
+        List<Student> studentresults = StudentDAO.findUser(user);
+        for (Student item:studentresults){
+            studentisvalid = StudentDAO.checkPassword(password,item);
         }
-        if (isvalid){
+
+        List<Teacher> teacherresults = TeacherDAO.findUser(user);
+        for (Teacher item:teacherresults){
+            teacherisvalid = TeacherDAO.checkPassword(password,item);
+        }
+
+        if (teacherisvalid && !studentisvalid){
             loginInfoLabel.setText("Đăng nhập thành công!");
             loginInfoLabel.setForeground(new Color(77,203,162));
             loginInfoLabel.setVisible(true);
+
             JFrame frame2 = new MANAGEMENT_MENU_UI();
             this.dispose();
 
-        }else{
+        } else if (!teacherisvalid && studentisvalid) {
+                loginInfoLabel.setText("Đăng nhập thành công!");
+                loginInfoLabel.setForeground(new Color(77, 203, 162));
+                loginInfoLabel.setVisible(true);
+                JFrame frame3 = new STUDENT_MENU_UI();
+                this.dispose();
+
+        } else {
             loginInfoLabel.setText("Sai tài khoản hoặc mật khẩu!");
             loginInfoLabel.setForeground(new Color(187,66,63));
             loginInfoLabel.setVisible(true);
@@ -76,9 +91,7 @@ public class LOGIN_UI extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new LOGIN_UI();
-
-
+        JFrame frame = new COURSE_UI();
     }
 
 }

@@ -1,6 +1,5 @@
 package dao;
 
-import pojo.Course;
 import pojo.Semester;
 import java.util.List;
 

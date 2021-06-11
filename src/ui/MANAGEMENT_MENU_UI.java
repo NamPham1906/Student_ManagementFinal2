@@ -1,7 +1,6 @@
 package ui;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -65,6 +64,16 @@ public class MANAGEMENT_MENU_UI extends JFrame {
                 disposeFrame();
             }
         });
+
+        courseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new COURSE_UI();
+                disposeFrame();
+            }
+        });
     }
 
 }
+
+
