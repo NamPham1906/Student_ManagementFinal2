@@ -38,7 +38,7 @@ public class COURSE_UI extends JFrame {
         deleteButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
 
-        String [] columnName = {"Coure ID","School Year","Semester","Subject ID","Subject Name","Credit","Lecturer", "Room","Weekday","Shift"};
+        String [] columnName = {"Coure ID","School Year","Semester","Subject ID","Subject","Credits","Lecturer", "Room","Weekday","Shift"};
         Vector <String> columnNames = new Vector<String>(Arrays.asList(columnName));
         courseTable.setModel(new DefaultTableModel(CourseDAO.extractData(),columnNames));
         TableColumnModel columns = courseTable.getColumnModel();
@@ -51,7 +51,7 @@ public class COURSE_UI extends JFrame {
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new MANAGEMENT_MENU_UI();
+                JFrame frame = new  COURSE_EDIT_UI();
             }
         });
 
@@ -82,8 +82,6 @@ public class COURSE_UI extends JFrame {
                 disposeFrame();
             }
         });
-
-
 
     }
 

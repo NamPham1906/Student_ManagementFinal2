@@ -42,6 +42,11 @@ public class CourseDAO {
          return new Support<Course>().deleteRow("DELETE FROM Course hl  WHERE hl.courseId = '" + courseid + "'");
     }
 
+
+    public static void addCourse (Vector<String> input){
+
+    }
+
 }
 
 
