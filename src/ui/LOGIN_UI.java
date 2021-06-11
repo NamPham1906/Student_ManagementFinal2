@@ -36,6 +36,9 @@ public class LOGIN_UI extends JFrame {
             loginInfoLabel.setText("Đăng nhập thành công!");
             loginInfoLabel.setForeground(new Color(77,203,162));
             loginInfoLabel.setVisible(true);
+            JFrame frame2 = new MANAGEMENT_MENU_UI();
+            this.dispose();
+
         }else{
             loginInfoLabel.setText("Sai tài khoản hoặc mật khẩu!");
             loginInfoLabel.setForeground(new Color(187,66,63));
