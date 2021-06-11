@@ -1,6 +1,7 @@
 package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import utils.HibernateUtil;
 import java.util.List;
@@ -25,7 +26,25 @@ public class Support<T> {
         }
         return objects;
     }
-
+    public static boolean deleteRow(String hqlcommand){
+        boolean result = false;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            transaction = session.beginTransaction();
+            Query query = session.getSession().createQuery(hqlcommand);
+            query.executeUpdate();
+            transaction.commit();
+            result = true;
+        }catch (HibernateException ex){
+            transaction.rollback();
+            System.err.print(ex);
+            result = false;
+        }finally{
+            session.close();
+        }
+        return result;
+    }
     public static boolean stringCompare (char[] input, String passwordstring ){
         String inputstring = "";
 

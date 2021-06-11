@@ -12,7 +12,6 @@ public class CourseDAO {
                         executeHql("SELECT st FROM Course st");
         return results;
     }
-
     public static List<Course> findID (String courseid){
         List<Course> results =
                 new Support<Course>().
@@ -37,6 +36,10 @@ public class CourseDAO {
             datatable.add(data);
         }
         return datatable;
+    }
+
+    public static boolean deleteCourse(String courseid){
+         return new Support<Course>().deleteRow("DELETE FROM Course hl  WHERE hl.courseId = '" + courseid + "'");
     }
 
 }

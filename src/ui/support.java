@@ -15,4 +15,7 @@ public class support {
         centerRender.setHorizontalAlignment(JLabel.CENTER);
         column.setCellRenderer(centerRender);
     }
+    public static int confirmBox (String messege){
+        return JOptionPane.showConfirmDialog(null,messege,"CONFIRM ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    }
 }

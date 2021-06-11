@@ -2,10 +2,7 @@ package ui;
 
 import dao.CourseDAO;
 import javax.swing.*;
-import javax.swing.event.TableColumnModelEvent;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,14 +38,6 @@ public class COURSE_UI extends JFrame {
         deleteButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
 
-        returnButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JFrame frame = new MANAGEMENT_MENU_UI();
-                disposeFrame();
-            }
-        });
-
         String [] columnName = {"Coure ID","School Year","Semester","Subject ID","Subject Name","Credit","Lecturer", "Room","Weekday","Shift"};
         Vector <String> columnNames = new Vector<String>(Arrays.asList(columnName));
         courseTable.setModel(new DefaultTableModel(CourseDAO.extractData(),columnNames));
@@ -58,6 +47,43 @@ public class COURSE_UI extends JFrame {
         for (int i = 0; i < 10; i++) {
             support.setColumnCentrer(columns.getColumn(i));
         }
+
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new MANAGEMENT_MENU_UI();
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow =  courseTable.getSelectedRow();
+                if (selectedRow == -1){
+                    JOptionPane.showMessageDialog(COURSE_UI, "No course selected!");
+                }
+                else {
+                   int confirm = support.confirmBox("Delete this course?");
+                   if (confirm == 0){
+                        if (!CourseDAO.deleteCourse((String)courseTable.getValueAt(0,0))){
+                            JOptionPane.showMessageDialog(rootPane, "Delete Failed!");
+                        }
+                        courseTable.setModel(new DefaultTableModel(CourseDAO.extractData(),columnNames));
+                   }
+
+                }
+            }
+        });
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new MANAGEMENT_MENU_UI();
+                disposeFrame();
+            }
+        });
+
+
 
     }
 
