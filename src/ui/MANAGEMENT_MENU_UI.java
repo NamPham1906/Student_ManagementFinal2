@@ -86,6 +86,34 @@ public class MANAGEMENT_MENU_UI extends JFrame {
                 disposeFrame();
             }
         });
+        studentAcountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new STUDENT_UI();
+                disposeFrame();
+            }
+        });
+        managmentAcountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new TEACHER_UI();
+                disposeFrame();
+            }
+        });
+        classButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new CLASSROOM_UI();
+                disposeFrame();
+            }
+        });
+        semesterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new SEMESTER_UI();
+                disposeFrame();
+            }
+        });
     }
 
 }

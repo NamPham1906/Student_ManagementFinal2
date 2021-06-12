@@ -125,6 +125,26 @@
           <verticalTextPosition value="0"/>
         </properties>
       </component>
+      <component id="3b634" class="javax.swing.JButton" binding="addCourseButton">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="150" height="50"/>
+            <preferred-size width="150" height="50"/>
+            <maximum-size width="150" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11678814"/>
+          <borderPainted value="true"/>
+          <focusPainted value="false"/>
+          <foreground color="-856843"/>
+          <horizontalTextPosition value="4"/>
+          <label value="ADD COURSES"/>
+          <text value="ADD COURSES"/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

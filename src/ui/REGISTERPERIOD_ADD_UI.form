@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.REGISTERPERIOD_ADD_UI">
-  <grid id="27dc6" binding="SUBJECT_ADD_UI" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="REGISTERPERIOD_ADD_UI" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="15" left="15" bottom="15" right="15"/>
     <constraints>
       <xy x="20" y="20" width="420" height="600"/>
@@ -75,7 +75,7 @@
           <verticalTextPosition value="0"/>
         </properties>
       </component>
-      <component id="c3f9e" class="javax.swing.JTextField" binding="subjectIDTextField">
+      <component id="c3f9e" class="javax.swing.JTextField" binding="registerPeriodIDTextField">
         <constraints>
           <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="220" height="20"/>
@@ -87,34 +87,34 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="a0567" class="javax.swing.JLabel" binding="schoolSubjectIDLabel">
+      <component id="a0567" class="javax.swing.JLabel" binding="RegisterPeriodIDLabel">
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-14700597"/>
-          <text value="Subject ID: "/>
+          <text value="Register Period ID: "/>
         </properties>
       </component>
-      <component id="15673" class="javax.swing.JLabel" binding="subjectnameLabel">
+      <component id="15673" class="javax.swing.JLabel" binding="startDayLabel">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-14700597"/>
-          <text value="Subject: "/>
+          <text value="Start Day: "/>
         </properties>
       </component>
-      <component id="66747" class="javax.swing.JLabel" binding="creditLabel">
+      <component id="66747" class="javax.swing.JLabel" binding="endDayLabel">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <foreground color="-14700597"/>
-          <text value="Credits: "/>
+          <text value="End Day: "/>
         </properties>
       </component>
-      <component id="e8439" class="javax.swing.JTextField" binding="subjectnameTextField">
+      <component id="e8439" class="javax.swing.JTextField" binding="startDayTextField">
         <constraints>
           <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="220" height="-1"/>
@@ -124,7 +124,7 @@
         </constraints>
         <properties/>
       </component>
-      <component id="936eb" class="javax.swing.JTextField" binding="creditsTextField">
+      <component id="936eb" class="javax.swing.JTextField" binding="endDayTextField">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
             <minimum-size width="220" height="-1"/>

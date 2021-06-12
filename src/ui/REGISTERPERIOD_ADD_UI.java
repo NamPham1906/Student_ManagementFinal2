@@ -1,9 +1,6 @@
 package ui;
 
-import dao.SchoolSubjectDAO;
-import ui.SUBJECT_UI;
-import ui.support;
-
+import dao.RegisterPeriodDAO;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,24 +8,24 @@ import java.io.File;
 import java.util.Vector;
 
 public class REGISTERPERIOD_ADD_UI extends JFrame {
-    private JPanel SUBJECT_ADD_UI;
+    private JPanel REGISTERPERIOD_ADD_UI;
     private JButton saveButton;
     private JButton cancelButton;
     private JButton returnButton;
-    private JLabel schoolSubjectIDLabel;
-    private JLabel subjectnameLabel;
-    private JLabel creditLabel;
-    private JTextField subjectIDTextField;
-    private JTextField subjectnameTextField;
-    private JTextField creditsTextField;
+    private JLabel RegisterPeriodIDLabel;
+    private JLabel startDayLabel;
+    private JLabel endDayLabel;
+    private JTextField registerPeriodIDTextField;
+    private JTextField startDayTextField;
+    private JTextField endDayTextField;
 
     public void disposeFrame(){
         this.dispose();
     }
 
-    public REGISTERPERIOD_ADD_UI(JTable courseTables){
+    public REGISTERPERIOD_ADD_UI(JTable registerPeriodTables){
         super("ADD NEW REGISTER PERIOD");
-        this.setContentPane(SUBJECT_ADD_UI);
+        this.setContentPane(REGISTERPERIOD_ADD_UI);
         this.pack();
         String filePath = new File("").getAbsolutePath();
         ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\pic\\register.png");
@@ -44,20 +41,20 @@ public class REGISTERPERIOD_ADD_UI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Vector<String> input = new Vector<>();
-                String newSubjectID = subjectIDTextField.getText();
-                if (newSubjectID.equals("")){
-                    JOptionPane.showMessageDialog(rootPane, "Subject ID must not be null!");
+                String newRegisterPeriodID = registerPeriodIDTextField.getText();
+                if (newRegisterPeriodID.equals("")){
+                    JOptionPane.showMessageDialog(rootPane, "Register Period ID must not be null!");
                 }
                 else {
-                    input.add(newSubjectID);
-                    input.add(subjectnameTextField.getText());
-                    input.add(creditsTextField.getText());
-                    if (new SchoolSubjectDAO().addSchoolSubject(input)){
-                        JOptionPane.showMessageDialog(SUBJECT_ADD_UI, "Add Successfully!");
+                    input.add(newRegisterPeriodID);
+                    input.add(startDayTextField.getText());
+                    input.add(endDayTextField.getText());
+                    if (new RegisterPeriodDAO().addRegisterPeriod(input)){
+                        JOptionPane.showMessageDialog(REGISTERPERIOD_ADD_UI, "Add Successfully!");
                     }else{
-                        JOptionPane.showMessageDialog(SUBJECT_ADD_UI, "Add failed!");
+                        JOptionPane.showMessageDialog(REGISTERPERIOD_ADD_UI, "Add failed!");
                     };
-                    SUBJECT_UI.reFreshTable(courseTables);
+                    REGISTERPERIOD_UI.reFreshTable(registerPeriodTables);
                     disposeFrame();
                 }
 

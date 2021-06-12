@@ -19,6 +19,7 @@ public class REGISTERPERIOD_UI extends JFrame {
     private JButton deleteButton;
     private JButton returnButton;
     private JTable registerPeriodTable;
+    private JButton addCourseButton;
 
     public void disposeFrame(){
         this.dispose();
@@ -97,6 +98,18 @@ public class REGISTERPERIOD_UI extends JFrame {
                 }
                 else {
                     JFrame frame = new REGISTERPERIOD_EDIT_UI(registerPeriodTable,(String) registerPeriodTable.getValueAt(selectedRow,0));
+                }
+            }
+        });
+        addCourseButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow =  registerPeriodTable.getSelectedRow();
+                if (selectedRow == -1){
+                    JOptionPane.showMessageDialog(REGISTERPERIOD_UI, "No register period selected!");
+                }
+                else {
+                    JFrame frame = new COURSE_RESIGN_UI((String) registerPeriodTable.getValueAt(selectedRow,0));
                 }
             }
         });

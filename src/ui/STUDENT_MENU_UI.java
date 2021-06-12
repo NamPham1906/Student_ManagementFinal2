@@ -1,5 +1,7 @@
 package ui;
 
+import dao.StudentDAO;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,8 +18,9 @@ import java.io.File;
             this.dispose();
         }
 
-        public STUDENT_MENU_UI(){
+        public STUDENT_MENU_UI(String user){
             super("COURSE REGISTRATION SYSTEM");
+            String student_id = StudentDAO.findUser(user).get(0).getStudentId();
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setContentPane(MANAGEMENT_MENU);
             this.pack();
@@ -45,6 +48,27 @@ import java.io.File;
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     JFrame frame = new LOGIN_UI();
+                    disposeFrame();
+                }
+            });
+            courseButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JFrame frame = new COURSE_REGISTER_UI(user);
+                    disposeFrame();
+                }
+            });
+            registerPeriodButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JFrame frame = new COURSE_RESULT_UI(user);
+                    disposeFrame();
+                }
+            });
+            studentAcountButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    JFrame frame = new USER_UI(user);
                     disposeFrame();
                 }
             });

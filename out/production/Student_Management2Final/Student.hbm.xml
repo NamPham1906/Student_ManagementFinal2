@@ -15,7 +15,7 @@
             <column name="passwords" sql-type="char(50)" length="50"/>
         </property>
 
-        <many-to-one class="pojo.Classroom" name="classroom" fetch="join" lazy="false" cascade="save-update">
+        <many-to-one class="pojo.Classroom" name="classroom" fetch="join" lazy="false" cascade="merge">
             <column name="classID" sql-type="char(10)" length="10"/>
         </many-to-one>
 
@@ -29,7 +29,7 @@
             <column name="gender" sql-type="varchar(3)" length="3" not-null="true"/>
         </property>
 
-        <set inverse="false" name="registeredCourses" fetch="join" lazy="false" cascade="save-update"
+        <set inverse="false" name="registeredCourses" fetch="join" lazy="false" cascade="merge"
              table="Course_Student" >
             <key>
                 <column name="studentID" sql-type="char(10)" length="10"/>

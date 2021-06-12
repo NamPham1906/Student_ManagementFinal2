@@ -1,7 +1,10 @@
 package dao;
 
 import pojo.Semester;
+import pojo.Teacher;
+
 import java.util.List;
+import java.util.Vector;
 
 
 public class SemesterDAO {
@@ -24,5 +27,20 @@ public class SemesterDAO {
                 new Support<String>().
                         executeHql("SELECT st.semesterId FROM Semester st");
         return results.toArray(new String[0]);
+    }
+
+    public static Vector extractData () {
+        List<Semester> coursesList = SemesterDAO.getAllSemester();
+        Vector datatable = new Vector();
+        for (Semester item : coursesList) {
+            Vector data = new Vector();
+            data.add(item.getSemesterId());
+            data.add(item.getSemestername());
+            data.add(item.getSchoolyear());
+            data.add(item.getStartday());
+            data.add(item.getEndday());
+            datatable.add(data);
+        }
+        return datatable;
     }
 }

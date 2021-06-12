@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.util.Objects;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Vector;
 
 @Entity
 public class RegisterPeriod {
@@ -70,4 +71,7 @@ public class RegisterPeriod {
     public int hashCode() {
         return Objects.hash(registerperiodId, startday, endday,courses);
     }
+
+
+
 }

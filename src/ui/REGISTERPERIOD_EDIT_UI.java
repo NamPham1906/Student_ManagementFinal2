@@ -1,10 +1,10 @@
 package ui;
 
 
+import dao.RegisterPeriodDAO;
 import dao.SchoolSubjectDAO;
+import pojo.RegisterPeriod;
 import pojo.SchoolSubject;
-import ui.SUBJECT_UI;
-import ui.support;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,16 +13,16 @@ import java.io.File;
 import java.util.Vector;
 
 public class REGISTERPERIOD_EDIT_UI extends JFrame {
-    private JPanel SUBJECT_EDIT_UI;
+    private JPanel REGISTERPERIOD_EDIT_UI;
     private JButton saveButton;
     private JButton cancelButton;
     private JButton returnButton;
-    private JLabel subjectIDLabel;
-    private JLabel subjectLabel;
-    private JLabel creditsLabel;
-    private JTextField subjectIDTextField;
-    private JTextField subjectTextField;
-    private JTextField creaditsTextField;
+    private JLabel registerPeriodIDLabel;
+    private JLabel startdayLabel;
+    private JLabel endDayLabel;
+    private JTextField registerPeriodIDTextField;
+    private JTextField startdayTextField;
+    private JTextField endDayTextField;
 
     public void disposeFrame(){
         this.dispose();
@@ -30,7 +30,7 @@ public class REGISTERPERIOD_EDIT_UI extends JFrame {
 
     public REGISTERPERIOD_EDIT_UI(JTable courseTables, String editRow){
         super("EDIT REGISTER PERIOD");
-        this.setContentPane(SUBJECT_EDIT_UI);
+        this.setContentPane(REGISTERPERIOD_EDIT_UI);
         this.pack();
         String filePath = new File("").getAbsolutePath();
         ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\pic\\register.png");
@@ -41,31 +41,31 @@ public class REGISTERPERIOD_EDIT_UI extends JFrame {
         saveButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\save.png",50,50));
         cancelButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
-        SchoolSubject editSubject = SchoolSubjectDAO.findID(editRow).get(0);
+        RegisterPeriod editRegisterPeriod =  RegisterPeriodDAO.findID(editRow).get(0);
 
-        String oldSubjectIDVersion = editSubject.getSubjectId();
-        subjectIDTextField.setText(editSubject.getSubjectId());
-        subjectTextField.setText(editSubject.getSubjectname());
-        creaditsTextField.setText(editSubject.getCredits().toString());
+        String oldSubjectIDVersion = editRegisterPeriod.getRegisterperiodId();
+        registerPeriodIDTextField.setText(editRegisterPeriod.getRegisterperiodId());
+        startdayTextField.setText(editRegisterPeriod.getStartday().toString());
+        endDayTextField.setText(editRegisterPeriod.getEndday().toString());
 
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Vector<String> input = new Vector<>();
-                String newSubjectID = subjectIDTextField.getText();
-                if (newSubjectID.equals("")){
-                    JOptionPane.showMessageDialog(rootPane, "Subject ID must not be null!");
+                String newRegisterPeriodID = registerPeriodIDTextField.getText();
+                if (newRegisterPeriodID.equals("")){
+                    JOptionPane.showMessageDialog(rootPane, "Register Period ID must not be null!");
                 }
                 else {
-                    input.add(newSubjectID);
-                    input.add(subjectTextField.getText());
-                    input.add(creaditsTextField.getText());
-                    if (new SchoolSubjectDAO().editSchoolSubject(input,oldSubjectIDVersion)){
-                        JOptionPane.showMessageDialog(SUBJECT_EDIT_UI, "Edit Successfully!");
+                    input.add(newRegisterPeriodID);
+                    input.add(startdayTextField.getText());
+                    input.add(endDayTextField.getText());
+                    if (new RegisterPeriodDAO().editRegisterPeriod(input,oldSubjectIDVersion)){
+                        JOptionPane.showMessageDialog(REGISTERPERIOD_EDIT_UI, "Edit Successfully!");
                     }else{
-                        JOptionPane.showMessageDialog(SUBJECT_EDIT_UI, "Edit failed!");
+                        JOptionPane.showMessageDialog(REGISTERPERIOD_EDIT_UI, "Edit failed!");
                     };
-                    SUBJECT_UI.reFreshTable(courseTables);
+                    REGISTERPERIOD_UI.reFreshTable(courseTables);
                     disposeFrame();
                 }
 

@@ -1,14 +1,12 @@
 package com.company;
-import dao.*;
-import pojo.*;
-import java.util.List;
-//import SMUI.*;
+import ui.LOGIN_UI;
+import ui.REGISTERPERIOD_UI;
+
+import javax.swing.*;
+
 public class Main {
     public static void main(final String[] args)  {
 
-
+        JFrame frame = new LOGIN_UI();
     }
-
-
-
 }

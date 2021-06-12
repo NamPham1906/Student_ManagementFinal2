@@ -51,7 +51,7 @@ public class LOGIN_UI extends JFrame {
                 loginInfoLabel.setText("Đăng nhập thành công!");
                 loginInfoLabel.setForeground(new Color(77, 203, 162));
                 loginInfoLabel.setVisible(true);
-                JFrame frame3 = new STUDENT_MENU_UI();
+                JFrame frame3 = new STUDENT_MENU_UI(user);
                 this.dispose();
 
         } else {
@@ -89,10 +89,4 @@ public class LOGIN_UI extends JFrame {
             }
         });
     }
-
-    public static void main(String[] args) {
-        JFrame frame = new REGISTERPERIOD_UI();
-        //JFrame frame = new LOGIN_UI();
-    }
-
 }

@@ -15,7 +15,7 @@
             <column name="endday" sql-type="date" not-null="true"/>
         </property>
 
-        <set inverse="false" name="courses" fetch="join" lazy="false" cascade="save-update"
+        <set inverse="false" name="courses" fetch="join" lazy="false" cascade="merge"
              table="Course_Registerperiod" >
             <key>
                 <column name="registerperiodID" sql-type="char(10)" length="10"/>
