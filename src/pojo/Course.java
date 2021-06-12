@@ -18,7 +18,7 @@ public class Course {
     private String roomnum;
     private Integer weekday;
     private Integer shift;
-    private Set<Registerperiod> registerperiods = new HashSet<Registerperiod>(0);
+    private Set<RegisterPeriod> registerPeriods = new HashSet<RegisterPeriod>(0);
     private Set<Student> students = new HashSet<Student>(0);
 
     @Id
@@ -88,12 +88,12 @@ public class Course {
 
 
     @Basic
-    public Set<Registerperiod> getRegisterperiods() {
-        return registerperiods;
+    public Set<RegisterPeriod> getRegisterPeriods() {
+        return registerPeriods;
     }
 
-    public void setRegisterperiods (Set<Registerperiod> registerperiods) {
-        this.registerperiods = registerperiods;
+    public void setRegisterPeriods(Set<RegisterPeriod> registerPeriods) {
+        this.registerPeriods = registerPeriods;
     }
 
 
@@ -118,13 +118,13 @@ public class Course {
                 Objects.equals(roomnum, course.roomnum) &&
                 Objects.equals(weekday, course.weekday) &&
                 Objects.equals(shift, course.shift) &&
-                Objects.equals(registerperiods, course.registerperiods) &&
+                Objects.equals(registerPeriods, course.registerPeriods) &&
                 Objects.equals(students, course.students);
 
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(courseId, semester, schoolSubject, teacher, roomnum, weekday, shift, registerperiods, students);
+        return Objects.hash(courseId, semester, schoolSubject, teacher, roomnum, weekday, shift, registerPeriods, students);
     }
 }

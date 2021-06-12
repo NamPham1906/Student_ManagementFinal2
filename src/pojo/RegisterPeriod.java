@@ -10,7 +10,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 @Entity
-public class Registerperiod {
+public class RegisterPeriod {
     private String registerperiodId;
     private Date startday;
     private Date endday;
@@ -59,7 +59,7 @@ public class Registerperiod {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Registerperiod that = (Registerperiod) o;
+        RegisterPeriod that = (RegisterPeriod) o;
         return Objects.equals(registerperiodId, that.registerperiodId) &&
                 Objects.equals(startday, that.startday) &&
                 Objects.equals(endday, that.endday) &&

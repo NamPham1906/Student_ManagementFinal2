@@ -79,6 +79,13 @@ public class MANAGEMENT_MENU_UI extends JFrame {
                 disposeFrame();
             }
         });
+        registerPeriodButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new REGISTERPERIOD_UI();
+                disposeFrame();
+            }
+        });
     }
 
 }

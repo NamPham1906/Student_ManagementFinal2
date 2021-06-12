@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="pojo.Registerperiod" table="registerperiod" schema="crs">
+    <class name="pojo.RegisterPeriod" table="registerperiod" schema="crs">
         <id name="registerperiodId">
             <column name="registerperiodID" sql-type="char(10)" length="10"/>
         </id>

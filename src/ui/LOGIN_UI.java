@@ -91,7 +91,7 @@ public class LOGIN_UI extends JFrame {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new COURSE_UI();
+        JFrame frame = new REGISTERPERIOD_UI();
         //JFrame frame = new LOGIN_UI();
     }
 

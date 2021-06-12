@@ -17,7 +17,7 @@
         <mapping resource="SchoolSubject.hbm.xml"/>
         <mapping class="pojo.SchoolSubject"/>
         <mapping resource="Registerperiod.hbm.xml"/>
-        <mapping class="pojo.Registerperiod"/>
+        <mapping class="pojo.RegisterPeriod"/>
         <mapping resource="Semester.hbm.xml"/>
         <mapping class="pojo.Semester"/>
         <mapping resource="Student.hbm.xml"/>

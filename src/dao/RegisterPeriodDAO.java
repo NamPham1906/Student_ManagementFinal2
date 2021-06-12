@@ -1,0 +1,88 @@
+package dao;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import pojo.RegisterPeriod;
+import utils.HibernateUtil;
+
+import java.sql.Date;
+import java.util.List;
+import java.util.Vector;
+
+public class RegisterPeriodDAO {
+    public static List<RegisterPeriod> getAllRegisterPeriod(){
+        List<RegisterPeriod> results =
+                new Support<RegisterPeriod>().
+                        executeHql("SELECT st FROM RegisterPeriod st");
+        return results;
+    }
+    public static List<RegisterPeriod> findID (String registerPeriodId){
+        List<RegisterPeriod> results =
+                new Support<RegisterPeriod>().
+                        executeHql("SELECT st FROM RegisterPeriod st WHERE st.registerperiodId = '" + registerPeriodId + "'");
+        return results;
+    }
+    public static  String[] extractAllRegisterPeriodID (){
+        List<String> results =
+                new Support<String>().
+                        executeHql("SELECT st.registerPeriodId FROM RegisterPeriod st");
+        return results.toArray(new String[0]);
+    }
+    public static Vector extractData (){
+        List<RegisterPeriod> registerperiodsList = RegisterPeriodDAO.getAllRegisterPeriod();
+        Vector datatable = new Vector();
+        for (RegisterPeriod item: registerperiodsList){
+            Vector data = new Vector();
+            data.add(item.getRegisterperiodId());
+            data.add(item.getStartday().toString());
+            data.add(item.getEndday().toString());
+            datatable.add(data);
+        }
+        return datatable;
+    }
+    public static boolean deleteRegisterPeriod(String Registerperiodid){
+        return new Support<RegisterPeriod>().
+                deleteRow("DELETE FROM RegisterPeriod hl  WHERE hl.registerperiodId = '" + Registerperiodid + "'");
+    }
+    public static boolean addRegisterPeriod (Vector<String> input){
+        RegisterPeriod newRegisterPeriod = new RegisterPeriod();
+        if (!findID(input.elementAt(0).toString()).isEmpty()){
+            return false;
+        }
+        newRegisterPeriod.setRegisterperiodId(input.elementAt(0));
+        newRegisterPeriod.setEndday(Date.valueOf(input.elementAt(1)));
+        newRegisterPeriod.setStartday(Date.valueOf(input.elementAt(2)));
+        return new Support<RegisterPeriod>().addRow(newRegisterPeriod);
+    }
+    public static boolean editRegisterPeriod (Vector<String> input, String oldRegisterPeriodIDVersion){
+        boolean result = false;
+        if (!input.elementAt(0).equals(oldRegisterPeriodIDVersion)){
+            if (addRegisterPeriod(input)){
+                return deleteRegisterPeriod(oldRegisterPeriodIDVersion);
+            }else {
+                result = false;
+            }
+        }
+        else{
+            Transaction transaction = null;
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            try{
+                transaction = session.beginTransaction();
+                RegisterPeriod loadrow = session.load(RegisterPeriod.class, oldRegisterPeriodIDVersion);
+                loadrow.setStartday(Date.valueOf(input.elementAt(1)));
+                loadrow.setEndday(Date.valueOf(input.elementAt(2)));
+                session.update(loadrow);
+                transaction.commit();
+                result = true;
+            }catch (HibernateException ex){
+                transaction.rollback();
+                System.err.print(ex);
+                result = false;
+            }finally{
+                session.close();
+            }
+        }
+        return result;
+    }
+}
