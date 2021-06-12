@@ -1,7 +1,10 @@
 package ui;
 
 import dao.CourseDAO;
-
+import dao.SchoolSubjectDAO;
+import dao.SemesterDAO;
+import dao.TeacherDAO;
+import pojo.Course;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +12,7 @@ import java.io.File;
 import java.util.Vector;
 
 public class COURSE_EDIT_UI extends JFrame {
-    private JPanel COURSE_UI;
+    private JPanel COURSE_EDIT_UI;
     private JButton saveButton;
     private JButton cancelButton;
     private JButton returnButton;
@@ -21,22 +24,20 @@ public class COURSE_EDIT_UI extends JFrame {
     private JLabel weekdayLabel;
     private JLabel shiftLabel;
     private JTextField courseIDTextField;
-    private JTextField semesterIDTextField;
-    private JTextField SubjectIDTextField;
-    private JTextField TeacherIDTextField;
     private JTextField roomTextField;
     private JTextField weekdayTextField;
     private JTextField shiftTextField;
-
+    private JComboBox semesterIDcomboBox;
+    private JComboBox subjectIDComboBox;
+    private JComboBox teacherIDComboBox;
 
     public void disposeFrame(){
         this.dispose();
     }
 
-    public COURSE_EDIT_UI(){
-        super("ADD NEW COURSE");
-        this.setContentPane(COURSE_UI);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public COURSE_EDIT_UI(JTable courseTables, String editRow){
+        super("EDIT COURSE");
+        this.setContentPane(COURSE_EDIT_UI);
         this.pack();
         String filePath = new File("").getAbsolutePath();
         ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\pic\\course.png");
@@ -47,22 +48,48 @@ public class COURSE_EDIT_UI extends JFrame {
         saveButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\save.png",50,50));
         cancelButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
+        Course editCourse = CourseDAO.findID(editRow).get(0);
+
+
+        semesterIDcomboBox.setModel(new DefaultComboBoxModel(SemesterDAO.extractAllSemesterID()));
+        subjectIDComboBox.setModel(new DefaultComboBoxModel(SchoolSubjectDAO.extractAllSchoolSubjectID()));
+        teacherIDComboBox.setModel(new DefaultComboBoxModel(TeacherDAO.extractAllTeacherID()));
+
+        String oldCourseIDVersion = editCourse.getCourseId();
+        courseIDTextField.setText(editCourse.getCourseId());
+        semesterIDcomboBox.setSelectedItem(editCourse.getSemester().getSemesterId());
+        subjectIDComboBox.setSelectedItem(editCourse.getSchoolSubject().getSubjectId());
+        teacherIDComboBox.setSelectedItem(editCourse.getTeacher().getTeacherId());
+        roomTextField.setText(editCourse.getRoomnum());
+        weekdayTextField.setText(editCourse.getWeekday().toString());
+        shiftTextField.setText(editCourse.getShift().toString());
 
 
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Vector<String> input = new Vector<>();
-                input.add(courseIDTextField.getText());
-                input.add(semesterIDTextField.getText());
-                input.add(SubjectIDTextField.getText());
-                input.add(TeacherIDTextField.getText());
-                input.add(roomTextField.getText());
-                input.add(weekdayTextField.getText());
-                input.add(roomTextField.getText());
-                input.add(shiftTextField.getText());
-                new CourseDAO().addCourse(input);
-                disposeFrame();
+                String newCourseID = courseIDTextField.getText();
+                if (newCourseID.equals("")){
+                    JOptionPane.showMessageDialog(rootPane, "Course ID must not be null!");
+                }
+                else {
+                    input.add(newCourseID);
+                    input.add((String) semesterIDcomboBox.getSelectedItem());
+                    input.add((String) subjectIDComboBox.getSelectedItem());
+                    input.add((String) teacherIDComboBox.getSelectedItem());
+                    input.add(roomTextField.getText());
+                    input.add(weekdayTextField.getText());
+                    input.add(shiftTextField.getText());
+                    if (new CourseDAO().editCourse(input,oldCourseIDVersion)){
+                        JOptionPane.showMessageDialog(COURSE_EDIT_UI, "Edit Successfully!");
+                    }else{
+                        JOptionPane.showMessageDialog(COURSE_EDIT_UI, "Edit failed!");
+                    };
+                    COURSE_UI.reFreshTable(courseTables);
+                    disposeFrame();
+                }
+
             }
         });
 

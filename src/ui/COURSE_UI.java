@@ -21,7 +21,17 @@ public class COURSE_UI extends JFrame {
     public void disposeFrame(){
         this.dispose();
     }
-
+    public static void  reFreshTable(JTable courseTables){
+        String [] columnName = {"Coure ID","School Year","Semester","Subject ID","Subject","Credits","Lecturer", "Room","Weekday","Shift"};
+        Vector <String> columnNames = new Vector<String>(Arrays.asList(columnName));
+        courseTables.setModel(new DefaultTableModel(CourseDAO.extractData(),columnNames));
+        TableColumnModel columns = courseTables.getColumnModel();
+        columns.getColumn(4).setMinWidth(200);
+        columns.getColumn(6).setMinWidth(200);
+        for (int i = 0; i < 10; i++) {
+            support.setColumnCentrer(columns.getColumn(i));
+        }
+    }
     public COURSE_UI(){
         super("COURSE MANAGEMENT");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -38,20 +48,14 @@ public class COURSE_UI extends JFrame {
         deleteButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
 
-        String [] columnName = {"Coure ID","School Year","Semester","Subject ID","Subject","Credits","Lecturer", "Room","Weekday","Shift"};
-        Vector <String> columnNames = new Vector<String>(Arrays.asList(columnName));
-        courseTable.setModel(new DefaultTableModel(CourseDAO.extractData(),columnNames));
-        TableColumnModel columns = courseTable.getColumnModel();
-        columns.getColumn(4).setMinWidth(200);
-        columns.getColumn(6).setMinWidth(200);
-        for (int i = 0; i < 10; i++) {
-            support.setColumnCentrer(columns.getColumn(i));
-        }
+
+        reFreshTable(courseTable);
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new  COURSE_EDIT_UI();
+                JFrame frame = new COURSE_ADD_UI(courseTable);
+
             }
         });
 
@@ -65,10 +69,10 @@ public class COURSE_UI extends JFrame {
                 else {
                    int confirm = support.confirmBox("Delete this course?");
                    if (confirm == 0){
-                        if (!CourseDAO.deleteCourse((String)courseTable.getValueAt(0,0))){
+                        if (!CourseDAO.deleteCourse((String)courseTable.getValueAt(selectedRow,0))){
                             JOptionPane.showMessageDialog(rootPane, "Delete Failed!");
                         }
-                        courseTable.setModel(new DefaultTableModel(CourseDAO.extractData(),columnNames));
+                       reFreshTable(courseTable);
                    }
 
                 }
@@ -83,6 +87,18 @@ public class COURSE_UI extends JFrame {
             }
         });
 
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow =  courseTable.getSelectedRow();
+                if (selectedRow == -1){
+                    JOptionPane.showMessageDialog(COURSE_UI, "No course selected!");
+                }
+                else {
+                    JFrame frame = new COURSE_EDIT_UI(courseTable,(String)courseTable.getValueAt(selectedRow,0));
+                }
+            }
+        });
     }
 
 }

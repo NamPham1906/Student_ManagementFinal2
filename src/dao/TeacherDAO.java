@@ -27,4 +27,11 @@ public class TeacherDAO {
     public static boolean checkPassword (char[] input, Teacher teacher){
         return new Support<Teacher>().stringCompare(input, teacher.getPasswords());
     }
+
+    public static  String[] extractAllTeacherID (){
+        List<String> results =
+                new Support<String>().
+                        executeHql("SELECT st.teacherId FROM Teacher st");
+        return results.toArray(new String[0]);
+    }
 }

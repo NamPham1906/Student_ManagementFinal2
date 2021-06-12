@@ -8,16 +8,16 @@
         <id name="courseId">
             <column name="courseID" sql-type="char(10)" length="10"/>
         </id>
-        <many-to-one class="pojo.Semester" name="semester" fetch="join" lazy="false" cascade="save-update">
+        <many-to-one class="pojo.Semester" name="semester" fetch="join" lazy="false" cascade="merge">
             <column name="semesterID" sql-type="char(10)" length="10"/>
         </many-to-one>
 
-        <many-to-one class="pojo.SchoolSubject" name="schoolSubject" fetch="join" lazy="false" cascade="save-update">
+        <many-to-one class="pojo.SchoolSubject" name="schoolSubject" fetch="join" lazy="false" cascade="merge">
             <column name="subjectID" sql-type="char(10)" length="10"/>
         </many-to-one>
 
 
-        <many-to-one class="pojo.Teacher" name="teacher" fetch="join" lazy="false" cascade="save-update">
+        <many-to-one class="pojo.Teacher" name="teacher" fetch="join" lazy="false" cascade="merge">
             <column name="teacherID" sql-type="char(10)" length="10"/>
         </many-to-one>
 

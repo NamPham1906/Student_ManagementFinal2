@@ -18,4 +18,11 @@ public class SemesterDAO {
                         executeHql("SELECT st FROM Semester st WHERE st.semesterId = '" + semesterid + "'");
         return results;
     }
+
+    public static  String[] extractAllSemesterID (){
+        List<String> results =
+                new Support<String>().
+                        executeHql("SELECT st.semesterId FROM Semester st");
+        return results.toArray(new String[0]);
+    }
 }

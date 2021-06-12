@@ -45,6 +45,27 @@ public class Support<T> {
         }
         return result;
     }
+
+    public boolean addRow(T row){
+        boolean result = false;
+        Transaction transaction = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            transaction = session.beginTransaction();
+            session.save(row);
+            transaction.commit();
+            result = true;
+        }catch (HibernateException ex){
+            transaction.rollback();
+            System.err.print(ex);
+            result = false;
+        }finally{
+            session.close();
+        }
+        return result;
+    }
+
+
     public static boolean stringCompare (char[] input, String passwordstring ){
         String inputstring = "";
 
