@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ui.SUBJECT_ADD_UI">
+  <grid id="27dc6" binding="SUBJECT_ADD_UI" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="15" left="15" bottom="15" right="15"/>
+    <constraints>
+      <xy x="20" y="20" width="420" height="600"/>
+    </constraints>
+    <properties>
+      <inheritsPopupMenu value="true"/>
+      <minimumSize width="420" height="300"/>
+      <opaque value="true"/>
+      <preferredSize width="420" height="300"/>
+      <requestFocusEnabled value="true"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="eeb0f" class="javax.swing.JButton" binding="returnButton">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="120" height="50"/>
+            <preferred-size width="120" height="50"/>
+            <maximum-size width="120" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-14700597"/>
+          <borderPainted value="true"/>
+          <focusPainted value="false"/>
+          <foreground color="-856843"/>
+          <horizontalAlignment value="0"/>
+          <horizontalTextPosition value="4"/>
+          <label value="RETURN"/>
+          <text value="RETURN"/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="d5160" class="javax.swing.JButton" binding="saveButton">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="1" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="120" height="50"/>
+            <preferred-size width="120" height="50"/>
+            <maximum-size width="120" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11678814"/>
+          <borderPainted value="true"/>
+          <focusPainted value="false"/>
+          <foreground color="-856843"/>
+          <horizontalTextPosition value="4"/>
+          <label value="SAVE"/>
+          <text value="SAVE"/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="9c9dc" class="javax.swing.JButton" binding="cancelButton">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="120" height="50"/>
+            <preferred-size width="120" height="50"/>
+            <maximum-size width="120" height="50"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-11678814"/>
+          <borderPainted value="true"/>
+          <focusPainted value="false"/>
+          <foreground color="-856843"/>
+          <horizontalTextPosition value="4"/>
+          <label value="CANCEL"/>
+          <text value="CANCEL"/>
+          <verticalAlignment value="0"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="c3f9e" class="javax.swing.JTextField" binding="subjectIDTextField">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="220" height="20"/>
+            <preferred-size width="220" height="20"/>
+            <maximum-size width="220" height="20"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="a0567" class="javax.swing.JLabel" binding="schoolSubjectIDLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-14700597"/>
+          <text value="Subject ID: "/>
+        </properties>
+      </component>
+      <component id="15673" class="javax.swing.JLabel" binding="subjectnameLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-14700597"/>
+          <text value="Subject: "/>
+        </properties>
+      </component>
+      <component id="66747" class="javax.swing.JLabel" binding="creditLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-14700597"/>
+          <text value="Credits: "/>
+        </properties>
+      </component>
+      <component id="e8439" class="javax.swing.JTextField" binding="subjectnameTextField">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="220" height="-1"/>
+            <preferred-size width="220" height="-1"/>
+            <maximum-size width="220" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+      <component id="936eb" class="javax.swing.JTextField" binding="creditsTextField">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="1" hsize-policy="7" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <minimum-size width="220" height="-1"/>
+            <preferred-size width="220" height="-1"/>
+            <maximum-size width="220" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
+    </children>
+  </grid>
+</form>

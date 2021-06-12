@@ -3,6 +3,7 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import pojo.Course;
 import pojo.SchoolSubject;
 import utils.HibernateUtil;
 
@@ -30,7 +31,26 @@ public class SchoolSubjectDAO {
                         executeHql("SELECT st.subjectId FROM SchoolSubject st");
         return results.toArray(new String[0]);
     }
+        public static Vector extractData (){
+        List<SchoolSubject> subjectsList = SchoolSubjectDAO.getAllschoolSubject();
+        Vector datatable = new Vector();
+        for (SchoolSubject item:subjectsList){
+            Vector data = new Vector();
+            data.add(item.getSubjectId());
+            data.add(item.getSubjectname());
+            data.add(item.getCredits());
+            datatable.add(data);
+        }
+        return datatable;
+    }
         public static boolean deleteSchoolSubject(String schoolsubjectid){
+            if (!new Support<Course>().
+                    executeHql("SELECT co FROM Course co WHERE co.schoolSubject.subjectId = '" + schoolsubjectid + "'").
+                    isEmpty()){
+                return false;
+            }
+
+
         return new Support<SchoolSubject>().
                 deleteRow("DELETE FROM SchoolSubject hl  WHERE hl.subjectId = '" + schoolsubjectid + "'");
          }

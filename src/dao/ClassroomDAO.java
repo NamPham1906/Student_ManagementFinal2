@@ -11,8 +11,6 @@ public class ClassroomDAO {
                         executeHql("SELECT st FROM Classroom st");
         return results;
     }
-
-
     public static List<Classroom> findID (String classroomid){
         List<Classroom> results =
                 new Support<Classroom>().
