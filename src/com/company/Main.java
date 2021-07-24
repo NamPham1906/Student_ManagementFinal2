@@ -1,6 +1,5 @@
 package com.company;
 import ui.LOGIN_UI;
-import ui.REGISTERPERIOD_UI;
 
 import javax.swing.*;
 

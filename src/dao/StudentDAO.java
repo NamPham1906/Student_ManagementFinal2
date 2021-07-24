@@ -66,20 +66,21 @@ public class StudentDAO {
     }
     public static boolean addStudent (Vector<String> input){
         Student newCourse = new Student();
-        if (!findID(input.elementAt(0)).isEmpty()){
+        if (!findID(input.elementAt(2)).isEmpty()){
             return false;
         }
         newCourse.setUsername(input.elementAt(0));
         newCourse.setPasswords(input.elementAt(1));
-        newCourse.setFullname(input.elementAt(2));
-        newCourse.setClassroom(ClassroomDAO.findID(input.elementAt(3)).get(0));
-        newCourse.setBirthday(Date.valueOf(input.elementAt(4)));
-        newCourse.setGender(input.elementAt(5));
+        newCourse.setStudentId(input.elementAt(2));
+        newCourse.setFullname(input.elementAt(3));
+        newCourse.setClassroom(ClassroomDAO.findID(input.elementAt(4)).get(0));
+        newCourse.setBirthday(Date.valueOf(input.elementAt(5)));
+        newCourse.setGender(input.elementAt(6));
         return new Support<Student>().addRow(newCourse);
     }
     public static boolean editStudent (Vector<String> input, String oldCourseIDVersion){
         boolean result = false;
-        if (!input.elementAt(0).equals(oldCourseIDVersion)){
+        if (!input.elementAt(2).equals(oldCourseIDVersion)){
             if (addStudent(input)){
                 return deleteStudent(oldCourseIDVersion);
             }else {
@@ -92,8 +93,8 @@ public class StudentDAO {
             try{
                 transaction = session.beginTransaction();
                 Student loadrow = session.load(Student.class, oldCourseIDVersion);
-                loadrow.setUsername(input.elementAt(1));
-                loadrow.setPasswords(input.elementAt(2));
+                loadrow.setUsername(input.elementAt(0));
+                loadrow.setPasswords(input.elementAt(1));
                 loadrow.setFullname(input.elementAt(3));
                 loadrow.setClassroom(ClassroomDAO.findID(input.elementAt(4)).get(0));
                 loadrow.setBirthday(Date.valueOf(input.elementAt(5)));
@@ -112,7 +113,6 @@ public class StudentDAO {
         }
         return result;
     }
-
     public static Vector courseResult (String studentid){
         Set<Course> coursesList = findID(studentid).get(0).getRegisteredCourses();
         Vector datatable = new Vector();
@@ -132,7 +132,6 @@ public class StudentDAO {
         }
         return datatable;
     }
-
     public static boolean deleteCourse(String courseid, String studentId){
         Set<Course> coursesList = findID(studentId).get(0).getRegisteredCourses();
         coursesList.remove(CourseDAO.findID(courseid).get(0));
@@ -155,8 +154,6 @@ public class StudentDAO {
         }
         return true;
     }
-
-
     public static boolean addCourseToStudent (String courseid, String studentId ){
         Set<Course> coursesList = findID(studentId).get(0).getRegisteredCourses();
         coursesList.add(CourseDAO.findID(courseid).get(0));

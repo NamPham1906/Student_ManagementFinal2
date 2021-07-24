@@ -9,6 +9,9 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import dao.*;
 import pojo.*;
+import ui.student_account.STUDENT_MENU_UI;
+import ui.teacher_account.TEACHER_MENU_UI;
+
 import java.util.List;
 
 public class LOGIN_UI extends JFrame {
@@ -44,7 +47,7 @@ public class LOGIN_UI extends JFrame {
             loginInfoLabel.setForeground(new Color(77,203,162));
             loginInfoLabel.setVisible(true);
 
-            JFrame frame2 = new MANAGEMENT_MENU_UI();
+            JFrame frame2 = new TEACHER_MENU_UI();
             this.dispose();
 
         } else if (!teacherisvalid && studentisvalid) {

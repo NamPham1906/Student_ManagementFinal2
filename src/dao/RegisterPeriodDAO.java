@@ -55,8 +55,8 @@ public class RegisterPeriodDAO {
             return false;
         }
         newRegisterPeriod.setRegisterperiodId(input.elementAt(0));
-        newRegisterPeriod.setEndday(Date.valueOf(input.elementAt(1)));
-        newRegisterPeriod.setStartday(Date.valueOf(input.elementAt(2)));
+        newRegisterPeriod.setStartday(Date.valueOf(input.elementAt(1)));
+        newRegisterPeriod.setEndday(Date.valueOf(input.elementAt(2)));
         return new Support<RegisterPeriod>().addRow(newRegisterPeriod);
     }
     public static boolean editRegisterPeriod (Vector<String> input, String oldRegisterPeriodIDVersion){
@@ -92,6 +92,9 @@ public class RegisterPeriodDAO {
 
 
     public static Vector courseToRegister (String registerPeriodId){
+        if (findID(registerPeriodId).isEmpty()){
+            return null;
+        }
         Set<Course> coursesList = findID(registerPeriodId).get(0).getCourses();
         Vector datatable = new Vector();
         for (Course item:coursesList){
