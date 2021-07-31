@@ -89,8 +89,6 @@ public class RegisterPeriodDAO {
         }
         return result;
     }
-
-
     public static Vector courseToRegister (String registerPeriodId){
         if (findID(registerPeriodId).isEmpty()){
             return null;
@@ -113,8 +111,6 @@ public class RegisterPeriodDAO {
         }
         return datatable;
     }
-
-
     public static String availableRegisterPeriod (){
         List<RegisterPeriod> RegisterPeriodList = getAllRegisterPeriod();
         for (RegisterPeriod item: RegisterPeriodList){
@@ -127,7 +123,6 @@ public class RegisterPeriodDAO {
         }
         return null;
     }
-
     public static boolean addCourseToPeriod (String courseid, String registerPeriodId ){
         Set<Course> coursesList = findID(registerPeriodId).get(0).getCourses();
         coursesList.add(CourseDAO.findID(courseid).get(0));
@@ -150,5 +145,4 @@ public class RegisterPeriodDAO {
         }
         return true;
     }
-
 }

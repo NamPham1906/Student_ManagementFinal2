@@ -26,8 +26,6 @@ public class ClassroomDAO {
                         executeHql("SELECT st.classId FROM Classroom st");
         return results.toArray(new String[0]);
     }
-
-
     public static Vector extractData () {
         List<Classroom> coursesList = ClassroomDAO.getAllClassroom();
         Vector datatable = new Vector();

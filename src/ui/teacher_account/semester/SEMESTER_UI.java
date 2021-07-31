@@ -1,11 +1,8 @@
 package ui.teacher_account.semester;
 
-import dao.CourseDAO;
 import dao.SemesterDAO;
 import ui.support;
-import ui.teacher_account.TEACHER_MENU_UI;
-import ui.teacher_account.course.COURSE_ADD_UI;
-import ui.teacher_account.course.COURSE_EDIT_UI;
+import ui.teacher_account.TEACHER_MENU_UI
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -17,21 +14,21 @@ import java.util.Arrays;
 import java.util.Vector;
 
 public class SEMESTER_UI extends JFrame {
-    private JPanel COURSE_UI;
+    private JPanel SEMESTER_UI;
     private JButton addButton;
     private JButton editButton;
     private JButton deleteButton;
     private JButton returnButton;
-    private JTable courseTable;
+    private JTable semesterTable;
 
     public void disposeFrame(){
         this.dispose();
     }
-    public static void  reFreshTable(JTable courseTables){
-        String [] columnName = {"Semester ID","Semester","Schoolyear","Startday","Endday"};
+    public static void  reFreshTable(JTable semesterTables){
+        String [] columnName = {"Semester ID","Semester","School year","Start date","End date"};
         Vector <String> columnNames = new Vector<String>(Arrays.asList(columnName));
-        courseTables.setModel(new DefaultTableModel(SemesterDAO.extractData(),columnNames));
-        TableColumnModel columns = courseTables.getColumnModel();
+        semesterTables.setModel(new DefaultTableModel(SemesterDAO.extractData(),columnNames));
+        TableColumnModel columns = semesterTables.getColumnModel();
         columns.getColumn(1).setMinWidth(200);
         columns.getColumn(2).setMinWidth(200);
         columns.getColumn(3).setMinWidth(200);
@@ -42,7 +39,7 @@ public class SEMESTER_UI extends JFrame {
     public SEMESTER_UI(){
         super("COURSE REGISTRATION SYSTEM | SEMESTER MANAGEMENT");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane(COURSE_UI);
+        this.setContentPane(SEMESTER_UI);
         this.pack();
         String filePath = new File("").getAbsolutePath();
         ImageIcon img = new ImageIcon(filePath + "\\src\\ui\\pic\\semester.png");
@@ -55,33 +52,43 @@ public class SEMESTER_UI extends JFrame {
         deleteButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
 
-
-        reFreshTable(courseTable);
+        reFreshTable(semesterTable);
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new COURSE_ADD_UI(courseTable);
+                JFrame frame = new SEMESTER_ADD_UI(semesterTable);
+            }
+        });
 
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int selectedRow =  semesterTable.getSelectedRow();
+                if (selectedRow == -1){
+                    JOptionPane.showMessageDialog(SEMESTER_UI, "No semester selected!");
+                }
+                else {
+                    JFrame frame = new SEMESTER_EDIT_UI(semesterTable,(String) semesterTable.getValueAt(selectedRow,0));
+                }
             }
         });
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedRow =  courseTable.getSelectedRow();
+                int selectedRow =  semesterTable.getSelectedRow();
                 if (selectedRow == -1){
-                    JOptionPane.showMessageDialog(COURSE_UI, "No course selected!");
+                    JOptionPane.showMessageDialog(SEMESTER_UI, "No semester selected!");
                 }
                 else {
-                   int confirm = support.confirmBox("Delete this course?");
-                   if (confirm == 0){
-                        if (!CourseDAO.deleteCourse((String)courseTable.getValueAt(selectedRow,0))){
+                    int confirm = support.confirmBox("Delete this semester?");
+                    if (confirm == 0){
+                        if (!SemesterDAO.deleteSemester((String) semesterTable.getValueAt(selectedRow,0))){
                             JOptionPane.showMessageDialog(rootPane, "Delete Failed!");
                         }
-                       reFreshTable(courseTable);
-                   }
-
+                        reFreshTable(semesterTable);
+                    }
                 }
             }
         });
@@ -93,20 +100,6 @@ public class SEMESTER_UI extends JFrame {
                 disposeFrame();
             }
         });
-
-        editButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int selectedRow =  courseTable.getSelectedRow();
-                if (selectedRow == -1){
-                    JOptionPane.showMessageDialog(COURSE_UI, "No course selected!");
-                }
-                else {
-                    JFrame frame = new COURSE_EDIT_UI(courseTable,(String)courseTable.getValueAt(selectedRow,0));
-                }
-            }
-        });
-
     }
 
 }

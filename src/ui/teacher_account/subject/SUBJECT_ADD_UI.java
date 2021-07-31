@@ -10,13 +10,13 @@ import java.io.File;
 import java.util.Vector;
 
 public class SUBJECT_ADD_UI extends JFrame {
+    private JLabel schoolSubjectIDLabel;
+    private JLabel subjectnameLabel;
+    private JLabel creditLabel;
     private JPanel SUBJECT_ADD_UI;
     private JButton saveButton;
     private JButton cancelButton;
     private JButton returnButton;
-    private JLabel schoolSubjectIDLabel;
-    private JLabel subjectnameLabel;
-    private JLabel creditLabel;
     private JTextField subjectIDTextField;
     private JTextField subjectnameTextField;
     private JTextField creditsTextField;
@@ -76,8 +76,6 @@ public class SUBJECT_ADD_UI extends JFrame {
                 disposeFrame();
             }
         });
-
     }
-
 
 }

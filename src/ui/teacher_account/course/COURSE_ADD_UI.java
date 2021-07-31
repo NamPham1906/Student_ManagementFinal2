@@ -88,14 +88,12 @@ public class COURSE_ADD_UI extends JFrame {
                 disposeFrame();
             }
         });
-
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 disposeFrame();
             }
         });
-
     }
 
 }

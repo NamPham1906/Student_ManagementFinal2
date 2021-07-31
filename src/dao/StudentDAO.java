@@ -38,7 +38,6 @@ public class StudentDAO {
     public static boolean checkPassword (char[] input, Student student){
         return new Support<Student>().stringCompare(input, student.getPasswords());
     }
-
     public static Vector extractData (){
         List<Student> coursesList = StudentDAO.getAllStudent();
         Vector datatable = new Vector();
@@ -61,8 +60,8 @@ public class StudentDAO {
                         executeHql("SELECT st.studentId FROM Student st");
         return results.toArray(new String[0]);
     }
-    public static boolean deleteStudent(String courseid){
-        return new Support<Student>().deleteRow("DELETE FROM Student hl  WHERE hl.studentId = '" + courseid + "'");
+    public static boolean deleteStudent(String studentid){
+        return new Support<Student>().deleteRow("DELETE FROM Student hl  WHERE hl.studentId = '" + studentid + "'");
     }
     public static boolean addStudent (Vector<String> input){
         Student newCourse = new Student();
@@ -176,6 +175,4 @@ public class StudentDAO {
         }
         return true;
     }
-
-
 }

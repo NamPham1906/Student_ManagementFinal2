@@ -45,7 +45,6 @@ public class Support<T> {
         }
         return result;
     }
-
     public boolean addRow(T row){
         boolean result = false;
         Transaction transaction = null;
@@ -64,8 +63,6 @@ public class Support<T> {
         }
         return result;
     }
-
-
     public static boolean stringCompare (char[] input, String passwordstring ){
         String inputstring = "";
 

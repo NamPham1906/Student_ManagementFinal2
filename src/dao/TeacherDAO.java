@@ -1,6 +1,11 @@
 package dao;
-import pojo.Student;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import pojo.Teacher;
+import utils.HibernateUtil;
+
+import java.sql.Date;
 import java.util.List;
 import java.util.Vector;
 
@@ -51,5 +56,57 @@ public class TeacherDAO {
             datatable.add(data);
         }
         return datatable;
+    }
+
+    public static boolean deleteTeacher(String teacherid){
+        return new Support<Teacher>().deleteRow("DELETE FROM Teacher hl  WHERE hl.teacherId = '" + teacherid + "'");
+    }
+    public static boolean addTeacher (Vector<String> input){
+        Teacher newTeacher = new Teacher();
+        if (!findID(input.elementAt(2)).isEmpty()){
+            return false;
+        }
+        newTeacher.setUsername(input.elementAt(0));
+        newTeacher.setPasswords(input.elementAt(1));
+        newTeacher.setTeacherId(input.elementAt(2));
+        newTeacher.setFullname(input.elementAt(3));
+        newTeacher.setOccupation(input.elementAt(4));
+        newTeacher.setBirthday(Date.valueOf(input.elementAt(5)));
+        newTeacher.setGender(input.elementAt(6));
+        return new Support<Teacher>().addRow(newTeacher);
+    }
+    public static boolean editTeacher (Vector<String> input, String oldteacherIDVersion){
+        boolean result = false;
+        if (!input.elementAt(2).equals(oldteacherIDVersion)){
+            if (addTeacher(input)){
+                return deleteTeacher(oldteacherIDVersion);
+            }else {
+                result = false;
+            }
+        }
+        else{
+            Transaction transaction = null;
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            try{
+                transaction = session.beginTransaction();
+                Teacher loadrow = session.load(Teacher.class, oldteacherIDVersion);
+                loadrow.setUsername(input.elementAt(0));
+                loadrow.setPasswords(input.elementAt(1));
+                loadrow.setFullname(input.elementAt(3));
+                loadrow.setOccupation(input.elementAt(4));
+                loadrow.setBirthday(Date.valueOf(input.elementAt(5)));
+                loadrow.setGender(input.elementAt(6));
+                session.update(loadrow);
+                transaction.commit();
+                result = true;
+            }catch (HibernateException ex){
+                transaction.rollback();
+                System.err.print(ex);
+                result = false;
+            }finally{
+                session.close();
+            }
+        }
+        return result;
     }
 }
