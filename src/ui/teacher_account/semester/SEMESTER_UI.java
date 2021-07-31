@@ -2,7 +2,7 @@ package ui.teacher_account.semester;
 
 import dao.SemesterDAO;
 import ui.support;
-import ui.teacher_account.TEACHER_MENU_UI
+import ui.teacher_account.TEACHER_MENU_UI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
