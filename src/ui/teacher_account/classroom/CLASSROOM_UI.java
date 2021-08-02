@@ -1,11 +1,8 @@
 package ui.teacher_account.classroom;
 
 import dao.ClassroomDAO;
-import dao.CourseDAO;
 import ui.support;
 import ui.teacher_account.TEACHER_MENU_UI;
-import ui.teacher_account.course.COURSE_ADD_UI;
-import ui.teacher_account.course.COURSE_EDIT_UI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +19,7 @@ public class CLASSROOM_UI extends JFrame {
     private JButton editButton;
     private JButton deleteButton;
     private JButton returnButton;
-    private JTable courseTable;
+    private JTable classTable;
 
     public void disposeFrame(){
         this.dispose();
@@ -55,13 +52,12 @@ public class CLASSROOM_UI extends JFrame {
         deleteButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\delete.png",50,50));
         returnButton.setIcon(support.resizeImageIcon(filePath + "\\src\\ui\\pic\\return.png",50,50));
 
-
-        reFreshTable(courseTable);
+        reFreshTable(classTable);
 
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new COURSE_ADD_UI(courseTable);
+                JFrame frame = new CLASSROOM_ADD_UI(classTable);
 
             }
         });
@@ -69,19 +65,18 @@ public class CLASSROOM_UI extends JFrame {
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedRow =  courseTable.getSelectedRow();
+                int selectedRow =  classTable.getSelectedRow();
                 if (selectedRow == -1){
-                    JOptionPane.showMessageDialog(SEMESTER_UI, "No course selected!");
+                    JOptionPane.showMessageDialog(SEMESTER_UI, "No class selected!");
                 }
                 else {
-                   int confirm = support.confirmBox("Delete this course?");
+                   int confirm = support.confirmBox("Delete this class?");
                    if (confirm == 0){
-                        if (!CourseDAO.deleteCourse((String)courseTable.getValueAt(selectedRow,0))){
+                        if (!ClassroomDAO.deleteClassroom((String) classTable.getValueAt(selectedRow,0))){
                             JOptionPane.showMessageDialog(rootPane, "Delete Failed!");
                         }
-                       reFreshTable(courseTable);
+                       reFreshTable(classTable);
                    }
-
                 }
             }
         });
@@ -90,12 +85,12 @@ public class CLASSROOM_UI extends JFrame {
         editButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int selectedRow =  courseTable.getSelectedRow();
+                int selectedRow =  classTable.getSelectedRow();
                 if (selectedRow == -1){
-                    JOptionPane.showMessageDialog(SEMESTER_UI, "No course selected!");
+                    JOptionPane.showMessageDialog(SEMESTER_UI, "No class selected!");
                 }
                 else {
-                    JFrame frame = new COURSE_EDIT_UI(courseTable,(String)courseTable.getValueAt(selectedRow,0));
+                    JFrame frame = new CLASSROOM_EDIT_UI(classTable,(String) classTable.getValueAt(selectedRow,0));
                 }
             }
         });

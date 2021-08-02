@@ -91,14 +91,14 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="61c30" class="javax.swing.JTable" binding="courseTable">
+          <component id="61c30" class="javax.swing.JTable" binding="classTable">
             <constraints/>
             <properties>
               <autoCreateRowSorter value="true"/>
-              <background color="-11678814"/>
+              <background color="-14700597"/>
               <foreground color="-1"/>
               <gridColor color="-1"/>
-              <selectionBackground color="-14700597"/>
+              <selectionBackground color="-3555511"/>
               <selectionForeground color="-1"/>
             </properties>
           </component>
